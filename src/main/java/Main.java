@@ -156,11 +156,12 @@ public class Main {
                 int novaQtd = Integer.parseInt(JOptionPane.showInputDialog("Nova quantidade:"));
                 String novaUni = JOptionPane.showInputDialog("Nova unidade de medida (ex: Kg,Un,Cx):");
 
-                String confirma = JOptionPane.showInputDialog("""
-                    Confirma alteração?
-                    S - Sim
-                    N - Não
-                    """);
+                String confirma = JOptionPane.showInputDialog("Confirma alteração?\n"
+                    + "Nome: " + nomes[pos]
+                    + "\nPreço: " + precos[pos] + " -> " + novoPreco
+                    + "\nQuantidade: " + quantidades[pos] + unidades[pos] + " -> " + novaQtd +novaUni +
+                    "\n\nS - Sim"
+                    +"\nN - Não");
 
                 char confirmaChar = confirma.charAt(0);
 
