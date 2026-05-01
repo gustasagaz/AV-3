@@ -23,7 +23,7 @@ No ambiente comercial, o controle de estoque é uma atividade essencial para o f
 
 Diante desse cenário, torna-se necessário o desenvolvimento de sistemas que auxiliem no gerenciamento das informações relacionadas ao estoque. Esses sistemas permitem o acompanhamento preciso da quantidade de produtos disponíveis, além de possibilitar o registro de movimentações de entrada e saída e a atualização de preços.
 
-Neste contexto, o presente projeto propõe o desenvolvimento de um sistema de controle de estoque, simulando uma situação real do cotidiano empresarial, com o objetivo de aplicar conceitos de lógica de programação e estruturas de dados.
+Neste contexto, o projeto propõe o desenvolvimento de um sistema de controle de estoque, simulando uma situação real do cotidiano empresarial, com o objetivo de aplicar conceitos de lógica de programação e estruturas de dados.
 
 ---
 
@@ -60,7 +60,7 @@ Desenvolver um sistema de controle de estoque capaz de gerenciar produtos, permi
 
 ## 🛠️ Tecnologias Utilizadas
 
-* Java
+* Java 21.0
 * JOptionPane (interface gráfica simples)
 * GitHub (controle de versão)
 
