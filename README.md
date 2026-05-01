@@ -1,13 +1,13 @@
-# 📦 Sistema de Controle de Estoque
+#  Sistema de Controle de Estoque
 
-## 📚 Universidade do Sul de Santa Catarina (UNISUL)
+##  Universidade do Sul de Santa Catarina (UNISUL)
 
 **Unidade Curricular:** Algoritmos e Programação
 **Professor:** Ricardo Ribeiro Assink e Osmar
 
 ---
 
-## 👥 Integrantes do Grupo
+##  Integrantes do Grupo
 
 * Douglas de Almeida Ruver - RA: 10726115128 - GitHub: DarthRuver007
 * Gustavo Willian Sagaz - RA: 1072619904 - GitHub: gustasagaz
@@ -17,7 +17,7 @@
 
 ---
 
-## 🧠 Contexto
+##  Contexto
 
 No ambiente comercial, o controle de estoque é uma atividade essencial para o funcionamento eficiente de uma empresa. A gestão inadequada dos produtos pode ocasionar diversos problemas, como a falta de itens para venda, excesso de mercadorias armazenadas e prejuízos financeiros.
 
@@ -27,38 +27,38 @@ Neste contexto, o projeto propõe o desenvolvimento de um sistema de controle de
 
 ---
 
-## 🎯 Objetivo
+##  Objetivo
 
 Desenvolver um sistema de controle de estoque capaz de gerenciar produtos, permitindo o cadastro, a atualização, a movimentação e a geração de relatórios, utilizando a linguagem Java e aplicando boas práticas de programação.
 
 ---
 
-## ⚙️ Funcionalidades
+##  Funcionalidades
 
-### 📦 Cadastro de Produtos
+###  Cadastro de Produtos
 
 * Inclusão de novos produtos
 * Alteração de dados cadastrados
 * Consulta de produtos
 * Exclusão de produtos
 
-### 🔄 Movimentação de Estoque
+###  Movimentação de Estoque
 
 * Entrada de produtos (aumenta a quantidade)
 * Saída de produtos (reduz a quantidade)
 
-### 💰 Reajuste de Preços
+###  Reajuste de Preços
 
 * Aplicação de percentual de reajuste em todos os produtos
 
-### 📊 Relatórios
+###  Relatórios
 
 * Lista de preços dos produtos
 * Balanço físico-financeiro do estoque
 
 ---
 
-## 🛠️ Tecnologias Utilizadas
+##  Tecnologias Utilizadas
 
 * Java 21.0
 * JOptionPane (interface gráfica simples)
@@ -66,7 +66,7 @@ Desenvolver um sistema de controle de estoque capaz de gerenciar produtos, permi
 
 ---
 
-## 💻 Como Executar o Projeto
+##  Como Executar o Projeto
 
 1. Clone o repositório:
 
@@ -84,7 +84,7 @@ Main.java
 
 ---
 
-## 📂 Estrutura do Repositório
+##  Estrutura do Repositório
 
 ```
 📁 src/
@@ -97,14 +97,14 @@ Main.java
 
 ---
 
-## 🎥 Apresentação
+##  Apresentação
 
 O vídeo de apresentação do projeto está disponível no link abaixo:
 🔗 (Inserir link do YouTube aqui)
 
 ---
 
-## 📄 Conclusão
+##  Conclusão
 
 
 
