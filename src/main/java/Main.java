@@ -159,7 +159,7 @@ public class Main {
                 String confirma = JOptionPane.showInputDialog("Confirma alteração?\n"
                     + "Nome: " + nomes[pos]
                     + "\nPreço: " + precos[pos] + " -> " + novoPreco
-                    + "\nQuantidade: " + quantidades[pos] + unidades[pos] + " -> " + novaQtd +novaUni +
+                    + "\nQuantidade: " + quantidades[pos] + unidades[pos] + " -> " + novaQtd + novaUni +
                     "\n\nS - Sim"
                     +"\nN - Não");
 
