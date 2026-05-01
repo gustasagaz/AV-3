@@ -66,11 +66,6 @@ Desenvolver um sistema de controle de estoque capaz de gerenciar produtos, permi
 
 ---
 
-## 🧠 Estrutura do Sistema
-
-
----
-
 ## 💻 Como Executar o Projeto
 
 1. Clone o repositório:
