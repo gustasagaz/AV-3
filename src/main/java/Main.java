@@ -58,6 +58,9 @@ public class Main {
 
         do {
             String cadastro = JOptionPane.showInputDialog("""
+                                    XYZ COMERCIO DE PRODUTOS LTDA.
+                                    SISTEMA DE CONTROLE DE ESTOQUE
+                                                          
                                     CADASTRO DE PRODUTOS
                                     
                                     1 - INCLUSÃO 
@@ -296,6 +299,9 @@ public class Main {
 
         do {
             String movimentacao = JOptionPane.showInputDialog("""
+                                    XYZ COMERCIO DE PRODUTOS LTDA.
+                                    SISTEMA DE CONTROLE DE ESTOQUE
+                                                              
                                     MOVIMENTAÇÃO
                                     
                                     1 - ENTRADA 
@@ -308,7 +314,7 @@ public class Main {
 
             switch (op) {
                 case '1':
-                    JOptionPane.showMessageDialog(null, "Entrada de produto.");
+                    entrada();
                     break;
                 case '2':
                     JOptionPane.showMessageDialog(null, "Saída de produto.");
@@ -317,7 +323,82 @@ public class Main {
 
         } while (op != '0');
     }
+    // ================= entrada ==================
+        static void entrada() {
+        char novaEntradaChar;
 
+        do {
+            if (total == 0) {
+                JOptionPane.showMessageDialog(null, "Nenhum produto cadastrado!");
+                return;
+            }
+
+            String nomeBusca = JOptionPane.showInputDialog("Informe o nome do produto:");
+
+            int pos = -1;
+            
+            for (int i = 0; i < total; i++) {
+                if (nomes[i].equalsIgnoreCase(nomeBusca)) {
+                    pos = i;
+                    break;
+                }
+            }
+            
+            if (pos == -1) {
+                JOptionPane.showMessageDialog(null, "Produto não encontrado!");
+            } else {
+
+                
+                JOptionPane.showMessageDialog(null,
+                        "PRODUTO: "  + nomes[pos]
+                        + "\nQTDE ATUAL: "  + quantidades[pos] + unidades[pos]);
+
+                
+                int entrada = Integer.parseInt(
+                        JOptionPane.showInputDialog("Informe a quantidade de entrada: ")
+                );
+
+                
+                if (entrada <= 0) {
+                    JOptionPane.showMessageDialog(null, "Quantidade inválida!");
+                } else {
+
+                    double qtdeFinal = quantidades[pos] + entrada;
+
+                    
+                    JOptionPane.showMessageDialog(null,
+                            "QTDE FINAL: " + qtdeFinal + unidades[pos]);
+
+                    
+                    String confirma = JOptionPane.showInputDialog("""
+                        Confirma entrada?
+                        S - Sim
+                        N - Não
+                        """);
+
+                    char confirmaChar = confirma.charAt(0);
+
+                    if (confirmaChar == 'S' || confirmaChar == 's') {
+                        quantidades[pos] = qtdeFinal;
+
+                        JOptionPane.showMessageDialog(null, "Entrada realizada com sucesso!");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Operação cancelada!");
+                    }
+                }
+            }
+
+            
+            String novaEntrada = JOptionPane.showInputDialog("""
+                Deseja realizar nova entrada?
+                S - Sim
+                N - Não
+                """);
+
+            novaEntradaChar = novaEntrada.charAt(0);
+
+        } while (novaEntradaChar == 'S' || novaEntradaChar == 's');
+    }
     // ================= REAJUSTE =================
     static void reajuste() {
         JOptionPane.showMessageDialog(null, "Reajuste de preços.");
