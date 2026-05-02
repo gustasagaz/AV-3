@@ -100,8 +100,8 @@ public class Main {
 
             String confirma = JOptionPane.showInputDialog("Confirma inclusão?\n\n"
                         + "Nome: " + nome
-                        + "\nPreço: " + preco
-                        + "\nQuantidade: " + qtde + Uni
+                        + "\nPreço: R$" + String.format("%.2f", preco)
+                        + "\nQuantidade: " + String.format("%.3f", qtde) + Uni
                         + "\n\nS - Sim"
                         + "\nN - Não");
 
@@ -150,8 +150,8 @@ public class Main {
                 JOptionPane.showMessageDialog(null,
                         "Produto encontrado!\n"
                         + "Nome: " + nomes[pos]
-                        + "\nPreço: " + precos[pos]
-                        + "\nQuantidade: " + quantidades[pos] + unidades[pos]);
+                        + "\nPreço: R$" + String.format("%.2f",precos[pos])
+                        + "\nQuantidade: " + String.format("%.3f",quantidades[pos]) + unidades[pos]);
 
                 double novoPreco = Double.parseDouble(JOptionPane.showInputDialog("Novo preço:"));
                 double novaQtd = Double.parseDouble(JOptionPane.showInputDialog("Nova quantidade:"));
@@ -159,8 +159,8 @@ public class Main {
 
                 String confirma = JOptionPane.showInputDialog("Confirma alteração?\n"
                         + "Nome: " + nomes[pos]
-                        + "\nPreço: " + precos[pos] + " -> " + novoPreco
-                        + "\nQuantidade: " + quantidades[pos] + unidades[pos] + " -> " + novaQtd + novaUni
+                        + "\nPreço: R$" + precos[pos] + " -> R$" + String.format("%.2f",novoPreco)
+                        + "\nQuantidade: " + String.format("%.3f",quantidades[pos]) + unidades[pos] + " -> " + String.format("%.3f",novaQtd) + novaUni
                         + "\n\nS - Sim"
                         + "\nN - Não");
 
@@ -208,8 +208,8 @@ public class Main {
                 JOptionPane.showMessageDialog(null,
                         "Produto encontrado!\n"
                         + "Nome: " + nomes [posConsulta]
-                        + "\nPreço: " + precos[posConsulta]
-                        + "\nQuantidade: " + quantidades[posConsulta] + unidades[posConsulta]);
+                        + "\nPreço: R$" + String.format("%.2f",precos[posConsulta])
+                        + "\nQuantidade: " + String.format("%.3f",quantidades[posConsulta]) + unidades[posConsulta]);
                     }
                 String novaconsulta = JOptionPane.showInputDialog("""
                 Deseja consultar outro produto?
