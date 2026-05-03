@@ -793,25 +793,115 @@ static void reajuste() {
 
         do {
             String relatorios = JOptionPane.showInputDialog("""
-                                    RELATÓRIOS
-                                    
-                                    1 - LISTA DE PREÇOS 
-                                    2 - BALANÇO FÍSICO-FINANCEIRO 
-                                    0 - RETORNAR
-                                    
-                                    DIGITE A OPÇÃO: """);
+                                RELATÓRIOS
+                                
+                                1 - LISTA DE PREÇOS
+                                2 - BALANÇO FÍSICO-FINANCEIRO
+                                0 - RETORNAR
+                                
+                                DIGITE A OPÇÃO: """);
 
             op = relatorios.charAt(0);
 
             switch (op) {
                 case '1':
-                    JOptionPane.showMessageDialog(null, "Lista de preços.");
+                    listaPrecos();
                     break;
                 case '2':
-                    JOptionPane.showMessageDialog(null, "Balanço físico-financeiro.");
+                    balancoFisicoFinanceiro();
                     break;
             }
 
         } while (op != '0');
+    }
+
+// ================= LISTA DE PREÇOS =================
+    static void listaPrecos() {
+
+        if (total == 0) {
+            JOptionPane.showMessageDialog(null, "Nenhum produto cadastrado!");
+            return;
+        }
+
+        String relatorio = """
+            XYZ COMERCIO DE PRODUTOS LTDA.
+            SISTEMA DE CONTROLE DE ESTOQUE
+            LISTA DE PREÇOS
+            
+            PRODUTO\tQUANTIDADES   UNIDADE\tPREÇO
+            ------------------------------------------------------------------
+            """;
+
+        for (int i = 0; i < total; i++) {
+            relatorio += nomes[i]
+                    + "\t"
+                    + quantidades [i]
+                    +"\t"
+                    + unidades[i]
+                    + "\tR$ "
+                    + String.format("%.2f", precos[i])
+                    + "\n";
+        }
+
+        JTextArea areaTexto = new JTextArea(relatorio, 20, 40);
+        areaTexto.setEditable(false);
+
+        JScrollPane scroll = new JScrollPane(areaTexto);
+
+        JOptionPane.showMessageDialog(
+                null,
+                scroll,
+                "Lista de Preços",
+                JOptionPane.INFORMATION_MESSAGE
+        );
+    }
+
+// ================= BALANÇO FÍSICO-FINANCEIRO =================
+    static void balancoFisicoFinanceiro() {
+
+        if (total == 0) {
+            JOptionPane.showMessageDialog(null, "Nenhum produto cadastrado!");
+            return;
+        }
+
+        String relatorio = """
+            XYZ COMERCIO DE PRODUTOS LTDA.
+            SISTEMA DE CONTROLE DE ESTOQUE
+            BALANÇO FÍSICO-FINANCEIRO
+            
+            PRODUTO\tQUANTIDADE\tUNIDADE\tVALOR TOTAL
+            -----------------------------------------------------------
+            """;
+
+        double totalGeral = 0;
+
+        for (int i = 0; i < total; i++) {
+            double valorTotal = quantidades[i] * precos[i];
+            totalGeral += valorTotal;
+
+            relatorio += nomes[i]
+                    + "\t"               
+                    + String.format("%.3f", quantidades[i])
+                    + "\t"
+                    + unidades[i]
+                    + "\tR$"
+                    + String.format("%.2f", valorTotal)
+                    + "\n";
+        }
+
+        relatorio += "\n---------------------------------------------------";
+        relatorio += "\nTOTAL GERAL: R$" + String.format("%.2f", totalGeral);
+
+        JTextArea areaTexto = new JTextArea(relatorio, 20, 45);
+        areaTexto.setEditable(false);
+
+        JScrollPane scroll = new JScrollPane(areaTexto);
+
+        JOptionPane.showMessageDialog(
+                null,
+                scroll,
+                "Balanço Físico-Financeiro",
+                JOptionPane.INFORMATION_MESSAGE
+        );
     }
 }
