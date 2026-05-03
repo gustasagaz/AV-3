@@ -300,6 +300,41 @@ public class Main {
         char newexclusaoChar;
 
         do {
+            String[] nomesOrdenados = new String[total];
+
+            for (int i = 0; i < total; i++) {
+                nomesOrdenados[i] = nomes[i];
+            }
+
+            for (int i = 0; i < total - 1; i++) {
+                for (int j = 0; j < total - 1 - i; j++) {
+
+                    if (nomesOrdenados[j].compareToIgnoreCase(nomesOrdenados[j + 1]) > 0) {
+
+                        String aux = nomesOrdenados[j];
+                        nomesOrdenados[j] = nomesOrdenados[j + 1];
+                        nomesOrdenados[j + 1] = aux;
+                    }
+                }
+            }
+
+            String lista = "PRODUTOS CADASTRADOS\n\n";
+
+            for (int i = 0; i < total; i++) {
+                lista += (i + 1) + " - " + nomesOrdenados[i] + "\n";
+            }
+
+            JTextArea areaTexto = new JTextArea(lista, 10, 20);
+            areaTexto.setEditable(false);
+
+            JScrollPane scroll = new JScrollPane(areaTexto);
+
+            JOptionPane.showMessageDialog(
+                    null,
+                    scroll,
+                    "Lista de Produtos",
+                    JOptionPane.INFORMATION_MESSAGE
+            );
             if (total == 0) {
                 JOptionPane.showMessageDialog(null, "Nenhum produto cadastrado!");
                 return;
@@ -400,6 +435,41 @@ public class Main {
         char novaEntradaChar;
 
         do {
+            String[] nomesOrdenados = new String[total];
+
+            for (int i = 0; i < total; i++) {
+                nomesOrdenados[i] = nomes[i];
+            }
+
+            for (int i = 0; i < total - 1; i++) {
+                for (int j = 0; j < total - 1 - i; j++) {
+
+                    if (nomesOrdenados[j].compareToIgnoreCase(nomesOrdenados[j + 1]) > 0) {
+
+                        String aux = nomesOrdenados[j];
+                        nomesOrdenados[j] = nomesOrdenados[j + 1];
+                        nomesOrdenados[j + 1] = aux;
+                    }
+                }
+            }
+
+            String lista = "PRODUTOS CADASTRADOS\n\n";
+
+            for (int i = 0; i < total; i++) {
+                lista += (i + 1) + " - " + nomesOrdenados[i] + "\n";
+            }
+
+            JTextArea areaTexto = new JTextArea(lista, 10, 20);
+            areaTexto.setEditable(false);
+
+            JScrollPane scroll = new JScrollPane(areaTexto);
+
+            JOptionPane.showMessageDialog(
+                    null,
+                    scroll,
+                    "Lista de Produtos",
+                    JOptionPane.INFORMATION_MESSAGE
+            );
             if (total == 0) {
                 JOptionPane.showMessageDialog(null, "Nenhum produto cadastrado!");
                 return;
@@ -471,7 +541,36 @@ public class Main {
         char novaSaidaChar;
 
         do {
+            String[] nomesOrdenados = new String[total];
+            for (int i = 0; i < total; i++) {
+                nomesOrdenados[i] = nomes[i];
+            }
+            for (int i = 0; i < total - 1; i++) {
+                for (int j = 0; j < total - 1 - i; j++) {
 
+                    if (nomesOrdenados[j].compareToIgnoreCase(nomesOrdenados[j + 1]) > 0) {
+
+                        String aux = nomesOrdenados[j];
+                        nomesOrdenados[j] = nomesOrdenados[j + 1];
+                        nomesOrdenados[j + 1] = aux;
+                    }
+                }
+            }
+            String lista = "PRODUTOS CADASTRADOS\n\n";
+            for (int i = 0; i < total; i++) {
+                lista += (i + 1) + " - " + nomesOrdenados[i] + "\n";
+            }
+            JTextArea areaTexto = new JTextArea(lista, 10, 20);
+            areaTexto.setEditable(false);
+
+            JScrollPane scroll = new JScrollPane(areaTexto);
+
+            JOptionPane.showMessageDialog(
+                    null,
+                    scroll,
+                    "Lista de Produtos",
+                    JOptionPane.INFORMATION_MESSAGE
+            );
             if (total == 0) {
                 JOptionPane.showMessageDialog(null, "Nenhum produto cadastrado!");
                 return;
@@ -539,10 +638,154 @@ public class Main {
         } while (novaSaidaChar == 'S' || novaSaidaChar == 's');
     }
 
-    // ================= REAJUSTE =================
-    static void reajuste() {
-        JOptionPane.showMessageDialog(null, "Reajuste de preços.");
-    }
+        // ================= REAJUSTE =================
+static void reajuste() {
+    char novoReajusteChar;
+
+    do {
+        String opcao = JOptionPane.showInputDialog("""
+                XYZ COMERCIO DE PRODUTOS LTDA.
+                SISTEMA DE CONTROLE DE ESTOQUE
+                
+                REAJUSTE DE PREÇOS
+                
+                1 - REAJUSTE GERAL
+                2 - REAJUSTE DE UM PRODUTO
+                
+                DIGITE A OPÇÃO:
+                """);
+
+        char opcaoChar = opcao.charAt(0);
+
+        if (opcaoChar == '2') {
+
+            if (total == 0) {
+                JOptionPane.showMessageDialog(null, "Nenhum produto cadastrado!");
+                return;
+            }
+
+            String[] nomesOrdenados = new String[total];
+
+            for (int i = 0; i < total; i++) {
+                nomesOrdenados[i] = nomes[i];
+            }
+
+            for (int i = 0; i < total - 1; i++) {
+                for (int j = 0; j < total - 1 - i; j++) {
+
+                    if (nomesOrdenados[j].compareToIgnoreCase(nomesOrdenados[j + 1]) > 0) {
+
+                        String aux = nomesOrdenados[j];
+                        nomesOrdenados[j] = nomesOrdenados[j + 1];
+                        nomesOrdenados[j + 1] = aux;
+                    }
+                }
+            }
+
+            String lista = "PRODUTOS CADASTRADOS\n\n";
+
+            for (int i = 0; i < total; i++) {
+                lista += (i + 1) + " - " + nomesOrdenados[i] + "\n";
+            }
+
+            JTextArea areaTexto = new JTextArea(lista, 10, 20);
+            areaTexto.setEditable(false);
+
+            JScrollPane scroll = new JScrollPane(areaTexto);
+
+            JOptionPane.showMessageDialog(
+                    null,
+                    scroll,
+                    "Lista de Produtos",
+                    JOptionPane.INFORMATION_MESSAGE
+            );
+            String nomeBusca = JOptionPane.showInputDialog("Informe o nome do produto:");
+            int pos = -1;
+
+            for (int i = 0; i < total; i++) {
+                if (nomes[i].equalsIgnoreCase(nomeBusca)) {
+                    pos = i;
+                    break;
+                }
+            }
+
+            if (pos == -1) {
+                JOptionPane.showMessageDialog(null, "Produto não encontrado!");
+            } else {
+
+                double percentual = Double.parseDouble(JOptionPane.showInputDialog(
+                                "PRODUTO: " + nomes[pos]
+                                + "\nUNIDADE: " + unidades[pos]
+                                + "\nPREÇO ATUAL: R$" + String.format("%.2f", precos[pos])
+                                + "\n\nPERCENTUAL DE REAJUSTE:"
+                        )
+                );
+
+                double novoPreco = precos[pos] + (precos[pos] * percentual / 100);
+
+                String confirma = JOptionPane.showInputDialog(
+                        "CONFIRMA REAJUSTE?\n\n"
+                        + "PRODUTO: " + nomes[pos]
+                        + "\nPREÇO ATUAL: R$" + String.format("%.2f", precos[pos])
+                        + "\nNOVO PREÇO: R$" + String.format("%.2f", novoPreco)
+                        + "\n\nS - SIM"
+                        + "\nN - NÃO"
+                );
+
+                char confirmaChar = confirma.charAt(0);
+
+                if (confirmaChar == 'S' || confirmaChar == 's') {
+                    precos[pos] = novoPreco;
+                    JOptionPane.showMessageDialog(null, "Reajuste realizado com sucesso!");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Reajuste cancelado!");
+                }
+            }
+
+        } else if (opcaoChar == '1') {
+
+            if (total == 0) {
+                JOptionPane.showMessageDialog(null, "Nenhum produto cadastrado!");
+                return;
+            }
+
+            double percentual = Double.parseDouble(
+                    JOptionPane.showInputDialog("Informe o percentual de reajuste geral:")
+            );
+
+            String confirma = JOptionPane.showInputDialog(
+                    "CONFIRMA REAJUSTE GERAL DE " + percentual + "% ?\n\n"
+                    + "S - SIM"
+                    + "\nN - NÃO"
+            );
+
+            char confirmaChar = confirma.charAt(0);
+
+            if (confirmaChar == 'S' || confirmaChar == 's') {
+
+                for (int i = 0; i < total; i++) {
+                    precos[i] = precos[i] + (precos[i] * percentual / 100);
+                }
+
+                JOptionPane.showMessageDialog(null, "Reajuste geral realizado com sucesso!");
+            } else {
+                JOptionPane.showMessageDialog(null, "Reajuste cancelado!");
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Opção inválida!");
+        }
+
+        String novoReajuste = JOptionPane.showInputDialog("""
+                NOVO REAJUSTE?
+                S - SIM
+                N - NÃO
+                """);
+
+        novoReajusteChar = novoReajuste.charAt(0);
+
+    } while (novoReajusteChar == 'S' || novoReajusteChar == 's');
+}
 
     // ================= RELATÓRIOS =================
     static void menuRelatorios() {
