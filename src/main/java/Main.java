@@ -32,6 +32,9 @@ public class Main {
             menuCHAR = menu.charAt(0);
 
             switch (menuCHAR) {
+                case '0':
+                    JOptionPane.showMessageDialog(null, "Finalizando o sistema.");
+                    break;
                 case '1':
                     menuCadastro();
                     break;
@@ -47,6 +50,9 @@ public class Main {
                 case '4':
                     menuRelatorios();
                     break;
+                default:
+                    JOptionPane.showMessageDialog(null, "Digite uma opção válida.");
+                break;
             }
 
         } while (menuCHAR != '0');
