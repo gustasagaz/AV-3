@@ -91,7 +91,7 @@ public class Main {
         } while (cadastroCHAR != '0');
     }
 
-    // ================= INCLUSÃO =================
+    // ================= INCLUSÃO ==================
     static void incluir() {
         char newinclusaoCHAR;
 
