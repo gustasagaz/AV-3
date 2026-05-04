@@ -92,6 +92,12 @@ public class Main {
                 case '4':
                     exclusao();
                     break;
+                case '0':
+                    // RETORNAR
+                break;
+                default:
+                    JOptionPane.showMessageDialog(null, "Digite uma opção válida.");
+                break;
             }
 
         } while (cadastroCHAR != '0');
