@@ -624,8 +624,45 @@ public class Main {
 
 // ================= LISTA DE PREÇOS =================
     static void listaPrecos() {
-    
+
+        if (total == 0) {
+            JOptionPane.showMessageDialog(null, "Nenhum produto cadastrado!");
+            return;
+        }
+
+        String relatorio = """
+            XYZ COMERCIO DE PRODUTOS LTDA.
+            SISTEMA DE CONTROLE DE ESTOQUE
+            LISTA DE PREÇOS
+            
+            PRODUTO\tQUANTIDADES   UNIDADE\tPREÇO
+            ------------------------------------------------------------------
+            """;
+
+        for (int i = 0; i < total; i++) {
+            relatorio += nomes[i]
+                    + "\t"
+                    + quantidades [i]
+                    +"\t"
+                    + unidades[i]
+                    + "\tR$ "
+                    + String.format("%.2f", precos[i])
+                    + "\n";
+        }
+
+        JTextArea areaTexto = new JTextArea(relatorio, 20, 40);
+        areaTexto.setEditable(false);
+
+        JScrollPane scroll = new JScrollPane(areaTexto);
+
+        JOptionPane.showMessageDialog(
+                null,
+                scroll,
+                "Lista de Preços",
+                JOptionPane.INFORMATION_MESSAGE
+        );
     }
+
     // ================= BALANÇO FÍSICO-FINANCEIRO =================
     static void balancoFisicoFinanceiro() {
         
