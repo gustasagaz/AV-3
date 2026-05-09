@@ -1,4 +1,5 @@
 
+import biblioteca.ListaProdutosOrdenados;
 import javax.swing.*;
 
 public class Main {
@@ -109,9 +110,9 @@ public class Main {
 
         do {
             String nome = JOptionPane.showInputDialog("Informe o nome do produto: ");
-            double preco = Double.parseDouble(JOptionPane.showInputDialog("Nome: " + nome + "\nInforme o preço: "));
-            String Uni = JOptionPane.showInputDialog("Nome: " + nome + "\nPreço: R$" + String.format("%.2f", preco) + "\nInforme a unidade de medida (ex: Kg,Un,Cx): ");
-            double qtde = Double.parseDouble(JOptionPane.showInputDialog("Nome: " + nome + "\nPreço: R$" + String.format("%.2f", preco) + "\nUnidade de medida: " + Uni + "\nInforme a quantidade: "));
+            double preco = Double.parseDouble(JOptionPane.showInputDialog("Nome: " + nome + "\n\nInforme o preço: "));
+            String Uni = JOptionPane.showInputDialog("Nome: " + nome + "\nPreço: R$" + String.format("%.2f", preco) + "\n\nInforme a unidade de medida (ex: Kg,Un,Cx): ");
+            double qtde = Double.parseDouble(JOptionPane.showInputDialog("Nome: " + nome + "\nPreço: R$" + String.format("%.2f", preco) + "\nUnidade de medida: " + Uni + "\n\nInforme a quantidade: "));
 
             String confirma = JOptionPane.showInputDialog("Confirma inclusão?\n\n"
                     + "Nome: " + nome
@@ -150,6 +151,7 @@ public class Main {
         char newalteracaoChar;
 
         do {
+            ListaProdutosOrdenados.mostrar(nomes, total);
             String nomeBusca = JOptionPane.showInputDialog("Informe o nome do produto que deseja alterar:");
             int pos = -1;
 
@@ -208,6 +210,7 @@ public class Main {
         char newconsultaChar;
 
         do {
+            ListaProdutosOrdenados.mostrar(nomes, total);
             String nomeConsulta = JOptionPane.showInputDialog("Informe o nome do produto que deseja consultar: ");
             int posConsulta = -1;
 
@@ -246,7 +249,7 @@ public class Main {
                 JOptionPane.showMessageDialog(null, "Nenhum produto cadastrado!");
                 return;
             }
-
+            ListaProdutosOrdenados.mostrar(nomes, total);
             String nomeBusca = JOptionPane.showInputDialog("Informe o nome do produto que deseja excluir:");
 
             int pos = -1;
@@ -346,7 +349,7 @@ public class Main {
                 JOptionPane.showMessageDialog(null, "Nenhum produto cadastrado!");
                 return;
             }
-
+            ListaProdutosOrdenados.mostrar(nomes, total);
             String nomeBusca = JOptionPane.showInputDialog("Informe o nome do produto:");
 
             int pos = -1;
@@ -417,7 +420,7 @@ public class Main {
                 JOptionPane.showMessageDialog(null, "Nenhum produto cadastrado!");
                 return;
             }
-
+            ListaProdutosOrdenados.mostrar(nomes, total);
             String nomeBusca = JOptionPane.showInputDialog("Informe o nome do produto:");
             int pos = -1;
 
@@ -499,13 +502,14 @@ public class Main {
 
             char opcaoChar = opcao.charAt(0);
 
+            //=================== REAJUSTE POR PRODUTO=================
             if (opcaoChar == '2') {
 
                 if (total == 0) {
                     JOptionPane.showMessageDialog(null, "Nenhum produto cadastrado!");
                     return;
                 }
-
+                ListaProdutosOrdenados.mostrar(nomes, total);
                 String nomeBusca = JOptionPane.showInputDialog("Informe o nome do produto:");
                 int pos = -1;
 
@@ -548,7 +552,7 @@ public class Main {
                         JOptionPane.showMessageDialog(null, "Reajuste cancelado!");
                     }
                 }
-
+                // ==================== REAJUSTE GERAL ==========================
             } else if (opcaoChar == '1') {
 
                 if (total == 0) {
