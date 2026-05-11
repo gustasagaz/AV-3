@@ -22,6 +22,16 @@ public class Main {
         return -1;
     }
     
+    static boolean estoqueVazio() {
+
+        if (total == 0) {
+            JOptionPane.showMessageDialog(null, "Nenhum produto cadastrado!");
+            return true;
+        }
+
+        return false;
+    }
+    
     public static void main(String[] args) {
 
         char menuCHAR;
@@ -246,9 +256,10 @@ public class Main {
         char newexclusaoChar;
 
         do {
-            if (total == 0) {
-                JOptionPane.showMessageDialog(null, "Nenhum produto cadastrado!");
+            
+            if (estoqueVazio()) {
                 return;
+                
             }
             ListaProdutosOrdenados.mostrar(nomes, total);
             String nomeBusca = JOptionPane.showInputDialog("Informe o nome do produto que deseja excluir:");
@@ -338,9 +349,10 @@ public class Main {
         char novaEntradaChar;
 
         do {
-            if (total == 0) {
-                JOptionPane.showMessageDialog(null, "Nenhum produto cadastrado!");
+            
+            if (estoqueVazio()) {
                 return;
+                
             }
             ListaProdutosOrdenados.mostrar(nomes, total);
             String nomeBusca = JOptionPane.showInputDialog("Informe o nome do produto:");
@@ -402,9 +414,10 @@ public class Main {
         char novaSaidaChar;
 
         do {
-            if (total == 0) {
-                JOptionPane.showMessageDialog(null, "Nenhum produto cadastrado!");
+            
+            if (estoqueVazio()) {
                 return;
+                
             }
             ListaProdutosOrdenados.mostrar(nomes, total);
             String nomeBusca = JOptionPane.showInputDialog("Informe o nome do produto:");
@@ -484,8 +497,7 @@ public class Main {
             //=================== REAJUSTE POR PRODUTO=================
             if (opcaoChar == '2') {
 
-                if (total == 0) {
-                    JOptionPane.showMessageDialog(null, "Nenhum produto cadastrado!");
+                if (estoqueVazio()) {
                     return;
                 }
                 ListaProdutosOrdenados.mostrar(nomes, total);
@@ -527,8 +539,7 @@ public class Main {
                 // ==================== REAJUSTE GERAL ==========================
             } else if (opcaoChar == '1') {
 
-                if (total == 0) {
-                    JOptionPane.showMessageDialog(null, "Nenhum produto cadastrado!");
+                if (estoqueVazio()) {
                     return;
                 }
 
@@ -601,8 +612,7 @@ public class Main {
 // ================= LISTA DE PREÇOS =================
     static void listaPrecos() {
 
-        if (total == 0) {
-            JOptionPane.showMessageDialog(null, "Nenhum produto cadastrado!");
+        if (estoqueVazio()) {
             return;
         }
 
@@ -642,8 +652,7 @@ public class Main {
     // ================= BALANÇO FÍSICO-FINANCEIRO =================
     static void balancoFisicoFinanceiro() {
 
-        if (total == 0) {
-            JOptionPane.showMessageDialog(null, "Nenhum produto cadastrado!");
+        if (estoqueVazio()) {
             return;
         }
 
