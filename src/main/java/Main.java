@@ -9,7 +9,19 @@ public class Main {
     static double[] quantidades = new double[100];
     static String[] unidades = new String[100];
     static int total = 0;
+    
+    // ================= FUNÇÕES AUXILIARES =================
+    static int buscarProduto(String nomeBusca) {
 
+        for (int i = 0; i < total; i++) {
+            if (nomes[i].equalsIgnoreCase(nomeBusca)) {
+                return i;
+            }
+        }
+
+        return -1;
+    }
+    
     public static void main(String[] args) {
 
         char menuCHAR;
@@ -153,40 +165,35 @@ public class Main {
         do {
             ListaProdutosOrdenados.mostrar(nomes, total);
             String nomeBusca = JOptionPane.showInputDialog("Informe o nome do produto que deseja alterar:");
-            int pos = -1;
+            
+            int posAlterar = buscarProduto(nomeBusca);
 
-            for (int i = 0; i < total; i++) {
-                if (nomes[i].equalsIgnoreCase(nomeBusca)) {
-                    pos = i;
-                    break;
-                }
-            }
-            if (pos == -1) {
+            if (posAlterar == -1) {
                 JOptionPane.showMessageDialog(null, "Produto não encontrado!");
             } else {
                 JOptionPane.showMessageDialog(null,
                         "Produto encontrado!\n"
-                        + "Nome: " + nomes[pos]
-                        + "\nPreço: R$" + String.format("%.2f", precos[pos])
-                        + "\nQuantidade: " + String.format("%.3f", quantidades[pos]) + unidades[pos]);
+                        + "Nome: " + nomes[posAlterar]
+                        + "\nPreço: R$" + String.format("%.2f", precos[posAlterar])
+                        + "\nQuantidade: " + String.format("%.3f", quantidades[posAlterar]) + unidades[posAlterar]);
 
-                double novoPreco = Double.parseDouble(JOptionPane.showInputDialog("O preço antigo é : R$" + String.format("%.2f", precos[pos]) + "\nDigite novo preço ou repita para manter:"));
-                String novaUni = JOptionPane.showInputDialog("Unidade antiga: " + unidades[pos] + "\nInforme a nova unidade de medida ou digite a mesma para manter (ex: Kg,Un,Cx,Pct):");
-                double novaQtd = Double.parseDouble(JOptionPane.showInputDialog("A quantidade antiga é: " + String.format("%.3f", quantidades[pos]) + "\nInforme a nova quantidade ou digite a mesma para manter:"));
+                double novoPreco = Double.parseDouble(JOptionPane.showInputDialog("O preço antigo é : R$" + String.format("%.2f", precos[posAlterar]) + "\nDigite novo preço ou repita para manter:"));
+                String novaUni = JOptionPane.showInputDialog("Unidade antiga: " + unidades[posAlterar] + "\nInforme a nova unidade de medida ou digite a mesma para manter (ex: Kg,Un,Cx,Pct):");
+                double novaQtd = Double.parseDouble(JOptionPane.showInputDialog("A quantidade antiga é: " + String.format("%.3f", quantidades[posAlterar]) + "\nInforme a nova quantidade ou digite a mesma para manter:"));
 
                 String confirma = JOptionPane.showInputDialog("Confirma alteração?\n"
-                        + "Nome: " + nomes[pos]
-                        + "\nPreço antigo: R$" + precos[pos] + " -> novo preço R$" + String.format("%.2f", novoPreco)
-                        + "\nQuantidade antiga: " + String.format("%.3f", quantidades[pos]) + unidades[pos] + " -> nova quantidade " + String.format("%.3f", novaQtd) + novaUni
+                        + "Nome: " + nomes[posAlterar]
+                        + "\nPreço antigo: R$" + precos[posAlterar] + " -> novo preço R$" + String.format("%.2f", novoPreco)
+                        + "\nQuantidade antiga: " + String.format("%.3f", quantidades[posAlterar]) + unidades[posAlterar] + " -> nova quantidade " + String.format("%.3f", novaQtd) + novaUni
                         + "\n\nS - Sim"
                         + "\nN - Não");
 
                 char confirmaChar = confirma.charAt(0);
 
                 if (confirmaChar == 'S' || confirmaChar == 's') {
-                    precos[pos] = novoPreco;
-                    unidades[pos] = novaUni;
-                    quantidades[pos] = novaQtd;
+                    precos[posAlterar] = novoPreco;
+                    unidades[posAlterar] = novaUni;
+                    quantidades[posAlterar] = novaQtd;
 
                     JOptionPane.showMessageDialog(null, "Produto alterado com sucesso!");
                 } else {
@@ -212,14 +219,8 @@ public class Main {
         do {
             ListaProdutosOrdenados.mostrar(nomes, total);
             String nomeConsulta = JOptionPane.showInputDialog("Informe o nome do produto que deseja consultar: ");
-            int posConsulta = -1;
-
-            for (int i = 0; i < total; i++) {
-                if (nomes[i].equalsIgnoreCase(nomeConsulta)) {
-                    posConsulta = i;
-                    break;
-                }
-            }
+            int posConsulta = buscarProduto(nomeConsulta);
+            
             if (posConsulta == -1) {
                 JOptionPane.showMessageDialog(null, "Produto não encontrado!");
             } else {
@@ -251,16 +252,8 @@ public class Main {
             }
             ListaProdutosOrdenados.mostrar(nomes, total);
             String nomeBusca = JOptionPane.showInputDialog("Informe o nome do produto que deseja excluir:");
-
-            int pos = -1;
-
-            for (int i = 0; i < total; i++) {
-                if (nomes[i].equalsIgnoreCase(nomeBusca)) {
-                    pos = i;
-                    break;
-                }
-            }
-
+            int pos = buscarProduto(nomeBusca);
+            
             if (pos == -1) {
                 JOptionPane.showMessageDialog(null, "Produto não encontrado!");
             } else {
@@ -352,14 +345,7 @@ public class Main {
             ListaProdutosOrdenados.mostrar(nomes, total);
             String nomeBusca = JOptionPane.showInputDialog("Informe o nome do produto:");
 
-            int pos = -1;
-
-            for (int i = 0; i < total; i++) {
-                if (nomes[i].equalsIgnoreCase(nomeBusca)) {
-                    pos = i;
-                    break;
-                }
-            }
+            int pos = buscarProduto(nomeBusca);
 
             if (pos == -1) {
                 JOptionPane.showMessageDialog(null, "Produto não encontrado!");
@@ -422,14 +408,7 @@ public class Main {
             }
             ListaProdutosOrdenados.mostrar(nomes, total);
             String nomeBusca = JOptionPane.showInputDialog("Informe o nome do produto:");
-            int pos = -1;
-
-            for (int i = 0; i < total; i++) {
-                if (nomes[i].equalsIgnoreCase(nomeBusca)) {
-                    pos = i;
-                    break;
-                }
-            }
+            int pos = buscarProduto(nomeBusca);
 
             if (pos == -1) {
                 JOptionPane.showMessageDialog(null, "Produto não encontrado!");
@@ -511,14 +490,7 @@ public class Main {
                 }
                 ListaProdutosOrdenados.mostrar(nomes, total);
                 String nomeBusca = JOptionPane.showInputDialog("Informe o nome do produto:");
-                int pos = -1;
-
-                for (int i = 0; i < total; i++) {
-                    if (nomes[i].equalsIgnoreCase(nomeBusca)) {
-                        pos = i;
-                        break;
-                    }
-                }
+                int pos = buscarProduto(nomeBusca);
 
                 if (pos == -1) {
                     JOptionPane.showMessageDialog(null, "Produto não encontrado!");
