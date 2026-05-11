@@ -1,4 +1,5 @@
 
+import auxiliares.FuncoesAuxiliares;
 import biblioteca.ListaProdutosOrdenados;
 import javax.swing.*;
 
@@ -9,28 +10,6 @@ public class Main {
     static double[] quantidades = new double[100];
     static String[] unidades = new String[100];
     static int total = 0;
-    
-    // ================= FUNÇÕES AUXILIARES =================
-    static int buscarProduto(String nomeBusca) {
-
-        for (int i = 0; i < total; i++) {
-            if (nomes[i].equalsIgnoreCase(nomeBusca)) {
-                return i;
-            }
-        }
-
-        return -1;
-    }
-    
-    static boolean estoqueVazio() {
-
-        if (total == 0) {
-            JOptionPane.showMessageDialog(null, "Nenhum produto cadastrado!");
-            return true;
-        }
-
-        return false;
-    }
     
     public static void main(String[] args) {
 
@@ -176,7 +155,7 @@ public class Main {
             ListaProdutosOrdenados.mostrar(nomes, total);
             String nomeBusca = JOptionPane.showInputDialog("Informe o nome do produto que deseja alterar:");
             
-            int posAlterar = buscarProduto(nomeBusca);
+            int posAlterar = FuncoesAuxiliares.buscarProduto(nomes, total, nomeBusca);
 
             if (posAlterar == -1) {
                 JOptionPane.showMessageDialog(null, "Produto não encontrado!");
@@ -228,8 +207,8 @@ public class Main {
 
         do {
             ListaProdutosOrdenados.mostrar(nomes, total);
-            String nomeConsulta = JOptionPane.showInputDialog("Informe o nome do produto que deseja consultar: ");
-            int posConsulta = buscarProduto(nomeConsulta);
+            String nomeBusca = JOptionPane.showInputDialog("Informe o nome do produto que deseja consultar: ");
+            int posConsulta = FuncoesAuxiliares.buscarProduto(nomes, total, nomeBusca);
             
             if (posConsulta == -1) {
                 JOptionPane.showMessageDialog(null, "Produto não encontrado!");
@@ -257,13 +236,12 @@ public class Main {
 
         do {
             
-            if (estoqueVazio()) {
+            if (FuncoesAuxiliares.estoqueVazio(total)) {
                 return;
-                
             }
             ListaProdutosOrdenados.mostrar(nomes, total);
             String nomeBusca = JOptionPane.showInputDialog("Informe o nome do produto que deseja excluir:");
-            int pos = buscarProduto(nomeBusca);
+            int pos = FuncoesAuxiliares.buscarProduto(nomes, total, nomeBusca);
             
             if (pos == -1) {
                 JOptionPane.showMessageDialog(null, "Produto não encontrado!");
@@ -350,14 +328,14 @@ public class Main {
 
         do {
             
-            if (estoqueVazio()) {
+            if (FuncoesAuxiliares.estoqueVazio(total)){
                 return;
-                
             }
+            
             ListaProdutosOrdenados.mostrar(nomes, total);
             String nomeBusca = JOptionPane.showInputDialog("Informe o nome do produto:");
 
-            int pos = buscarProduto(nomeBusca);
+            int pos = FuncoesAuxiliares.buscarProduto(nomes, total, nomeBusca);
 
             if (pos == -1) {
                 JOptionPane.showMessageDialog(null, "Produto não encontrado!");
@@ -415,13 +393,13 @@ public class Main {
 
         do {
             
-            if (estoqueVazio()) {
+            if (FuncoesAuxiliares.estoqueVazio(total)) {
                 return;
-                
             }
+            
             ListaProdutosOrdenados.mostrar(nomes, total);
             String nomeBusca = JOptionPane.showInputDialog("Informe o nome do produto:");
-            int pos = buscarProduto(nomeBusca);
+            int pos = FuncoesAuxiliares.buscarProduto(nomes, total, nomeBusca);
 
             if (pos == -1) {
                 JOptionPane.showMessageDialog(null, "Produto não encontrado!");
@@ -497,12 +475,12 @@ public class Main {
             //=================== REAJUSTE POR PRODUTO=================
             if (opcaoChar == '2') {
 
-                if (estoqueVazio()) {
+                if (FuncoesAuxiliares.estoqueVazio(total)) {
                     return;
                 }
                 ListaProdutosOrdenados.mostrar(nomes, total);
                 String nomeBusca = JOptionPane.showInputDialog("Informe o nome do produto:");
-                int pos = buscarProduto(nomeBusca);
+                int pos = FuncoesAuxiliares.buscarProduto(nomes, total, nomeBusca);
 
                 if (pos == -1) {
                     JOptionPane.showMessageDialog(null, "Produto não encontrado!");
@@ -539,7 +517,7 @@ public class Main {
                 // ==================== REAJUSTE GERAL ==========================
             } else if (opcaoChar == '1') {
 
-                if (estoqueVazio()) {
+                if (FuncoesAuxiliares.estoqueVazio(total)) {
                     return;
                 }
 
@@ -612,7 +590,7 @@ public class Main {
 // ================= LISTA DE PREÇOS =================
     static void listaPrecos() {
 
-        if (estoqueVazio()) {
+        if (FuncoesAuxiliares.estoqueVazio(total)) {
             return;
         }
 
@@ -652,7 +630,7 @@ public class Main {
     // ================= BALANÇO FÍSICO-FINANCEIRO =================
     static void balancoFisicoFinanceiro() {
 
-        if (estoqueVazio()) {
+        if (FuncoesAuxiliares.estoqueVazio(total)) {
             return;
         }
 
