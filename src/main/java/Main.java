@@ -587,7 +587,7 @@ public class Main {
         } while (op != '0');
     }
 
-// ================= LISTA DE PREÇOS ==================
+// ================= LISTA DE PREÇOS ===================
     static void listaPrecos() {
 
         if (FuncoesAuxiliares.estoqueVazio(total)) {
