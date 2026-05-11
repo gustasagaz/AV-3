@@ -587,7 +587,7 @@ public class Main {
         } while (op != '0');
     }
 
-// ================= LISTA DE PREÇOS =================
+// ================= LISTA DE PREÇOS ==================
     static void listaPrecos() {
 
         if (FuncoesAuxiliares.estoqueVazio(total)) {
@@ -627,7 +627,7 @@ public class Main {
         );
     }
 
-    // ================= BALANÇO FÍSICO-FINANCEIRO =================
+    // ================= BALANÇO FÍSICO-FINANCEIRO ==================
     static void balancoFisicoFinanceiro() {
 
         if (FuncoesAuxiliares.estoqueVazio(total)) {
