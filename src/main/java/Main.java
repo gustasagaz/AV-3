@@ -60,7 +60,7 @@ public class Main {
         } while (menuCHAR != '0');
     }
 
-    // ================= MEUNU CADASTRO ==================
+    // ================= MEUNU CADASTRO ===================
     static void menuCadastro() {
         char cadastroCHAR;
 
