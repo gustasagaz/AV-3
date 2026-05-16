@@ -453,7 +453,108 @@ public class Main {
 
     // ================= REAJUSTE =================
     static void reajuste() {
+        char novoReajusteChar;
 
+        do {
+            String opcao = JOptionPane.showInputDialog("""
+                XYZ COMERCIO DE PRODUTOS LTDA.
+                SISTEMA DE CONTROLE DE ESTOQUE
+                
+                REAJUSTE DE PREÇOS
+                
+                1 - REAJUSTE GERAL
+                2 - REAJUSTE DE UM PRODUTO
+                
+                DIGITE A OPÇÃO:
+                """);
+
+            char opcaoChar = opcao.charAt(0);
+
+            //=================== REAJUSTE POR PRODUTO=================
+            if (opcaoChar == '2') {
+
+                if (FuncoesAuxiliares.estoqueVazio(total)) {
+                    return;
+                }
+                ListaProdutosOrdenados.mostrar(nomes, total);
+                String nomeBusca = JOptionPane.showInputDialog("Informe o nome do produto:");
+                int pos = FuncoesAuxiliares.buscarProduto(nomes, total, nomeBusca);
+
+                if (pos == -1) {
+                    JOptionPane.showMessageDialog(null, "Produto não encontrado!");
+                } else {
+
+                    double percentual = Double.parseDouble(JOptionPane.showInputDialog(
+                            "PRODUTO: " + nomes[pos]
+                            + "\nUNIDADE: " + unidades[pos]
+                            + "\nPREÇO ATUAL: R$" + String.format("%.2f", precos[pos])
+                            + "\n\nPERCENTUAL DE REAJUSTE:"
+                    )
+                    );
+
+                    double novoPreco = precos[pos] + (precos[pos] * percentual / 100);
+
+                    String confirma = JOptionPane.showInputDialog(
+                            "CONFIRMA REAJUSTE?\n\n"
+                            + "PRODUTO: " + nomes[pos]
+                            + "\nPREÇO ATUAL: R$" + String.format("%.2f", precos[pos])
+                            + "\nNOVO PREÇO: R$" + String.format("%.2f", novoPreco)
+                            + "\n\nS - SIM"
+                            + "\nN - NÃO"
+                    );
+
+                    char confirmaChar = confirma.charAt(0);
+
+                    if (confirmaChar == 'S' || confirmaChar == 's') {
+                        precos[pos] = novoPreco;
+                        JOptionPane.showMessageDialog(null, "Reajuste realizado com sucesso!");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Reajuste cancelado!");
+                    }
+                }
+                // ==================== REAJUSTE GERAL ==========================
+            } else if (opcaoChar == '1') {
+
+                if (FuncoesAuxiliares.estoqueVazio(total)) {
+                    return;
+                }
+
+                double percentual = Double.parseDouble(
+                        JOptionPane.showInputDialog("Informe o percentual de reajuste geral:")
+                );
+
+                String confirma = JOptionPane.showInputDialog(
+                        "CONFIRMA REAJUSTE GERAL DE " + percentual + "% ?\n\n"
+                        + "S - SIM"
+                        + "\nN - NÃO"
+                );
+
+                char confirmaChar = confirma.charAt(0);
+
+                if (confirmaChar == 'S' || confirmaChar == 's') {
+
+                    for (int i = 0; i < total; i++) {
+                        precos[i] = precos[i] + (precos[i] * percentual / 100);
+                    }
+
+                    JOptionPane.showMessageDialog(null, "Reajuste geral realizado com sucesso!");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Reajuste cancelado!");
+                }
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Opção inválida!");
+            }
+
+            String novoReajuste = JOptionPane.showInputDialog("""
+                NOVO REAJUSTE?
+                S - SIM
+                N - NÃO
+                """);
+
+            novoReajusteChar = novoReajuste.charAt(0);
+
+        } while (novoReajusteChar == 'S' || novoReajusteChar == 's');
     }
 // ================= RELATÓRIOS =================
 
