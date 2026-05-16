@@ -152,7 +152,7 @@ public class Main {
         char newalteracaoChar;
 
         do {
-            
+            ListaProdutosOrdenados.mostrar(nomes, total);
             String nomeBusca = JOptionPane.showInputDialog("Informe o nome do produto que deseja alterar:");
 
             int posAlterar = FuncoesAuxiliares.buscarProduto(nomes, total, nomeBusca);
@@ -206,7 +206,7 @@ public class Main {
         char newconsultaChar;
 
         do {
-            
+            ListaProdutosOrdenados.mostrar(nomes, total);
             String nomeBusca = JOptionPane.showInputDialog("Informe o nome do produto que deseja consultar: ");
             int posConsulta = FuncoesAuxiliares.buscarProduto(nomes, total, nomeBusca);
 
@@ -235,11 +235,11 @@ public class Main {
         char newexclusaoChar;
 
         do {
-
+            ListaProdutosOrdenados.mostrar(nomes, total);
             if (FuncoesAuxiliares.estoqueVazio(total)) {
                 return;
             }
-            
+
             String nomeBusca = JOptionPane.showInputDialog("Informe o nome do produto que deseja excluir:");
             int pos = FuncoesAuxiliares.buscarProduto(nomes, total, nomeBusca);
 
@@ -327,7 +327,7 @@ public class Main {
         char novaEntradaChar;
 
         do {
-
+            ListaProdutosOrdenados.mostrar(nomes, total);
             if (FuncoesAuxiliares.estoqueVazio(total)) {
                 return;
             }
@@ -391,7 +391,7 @@ public class Main {
         char novaSaidaChar;
 
         do {
-
+            ListaProdutosOrdenados.mostrar(nomes, total);
             if (FuncoesAuxiliares.estoqueVazio(total)) {
                 return;
             }
