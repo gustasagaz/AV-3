@@ -557,9 +557,31 @@ public class Main {
         } while (novoReajusteChar == 'S' || novoReajusteChar == 's');
     }
 // ================= RELATÓRIOS =================
-
     static void menuRelatorios() {
+        char op;
 
+        do {
+            String relatorios = JOptionPane.showInputDialog("""
+                                RELATÓRIOS
+                                
+                                1 - LISTA DE PREÇOS
+                                2 - BALANÇO FÍSICO-FINANCEIRO
+                                0 - RETORNAR
+                                
+                                DIGITE A OPÇÃO: """);
+
+            op = relatorios.charAt(0);
+
+            switch (op) {
+                case '1':
+                    listaPrecos();
+                    break;
+                case '2':
+                    balancoFisicoFinanceiro();
+                    break;
+            }
+
+        } while (op != '0');
     }
 
 // ================= LISTA DE PREÇOS ===================
