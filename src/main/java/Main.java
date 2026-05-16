@@ -627,5 +627,49 @@ public class Main {
 
     // ================= BALANÇO FÍSICO-FINANCEIRO ==================
     static void balancoFisicoFinanceiro() {
+
+        if (FuncoesAuxiliares.estoqueVazio(total)) {
+            return;
+        }
+
+        String relatorio = """
+            XYZ COMERCIO DE PRODUTOS LTDA.
+            SISTEMA DE CONTROLE DE ESTOQUE
+            BALANÇO FÍSICO-FINANCEIRO
+            
+            PRODUTO\tQUANTIDADE\tUNIDADE\tVALOR TOTAL
+            -----------------------------------------------------------
+            """;
+
+        double totalGeral = 0;
+
+        for (int i = 0; i < total; i++) {
+            double valorTotal = quantidades[i] * precos[i];
+            totalGeral += valorTotal;
+
+            relatorio += nomes[i]
+                    + "\t"
+                    + String.format("%.3f", quantidades[i])
+                    + "\t"
+                    + unidades[i]
+                    + "\tR$"
+                    + String.format("%.2f", valorTotal)
+                    + "\n";
+        }
+
+        relatorio += "\n---------------------------------------------------";
+        relatorio += "\nTOTAL GERAL: R$" + String.format("%.2f", totalGeral);
+
+        JTextArea areaTexto = new JTextArea(relatorio, 20, 45);
+        areaTexto.setEditable(false);
+
+        JScrollPane scroll = new JScrollPane(areaTexto);
+
+        JOptionPane.showMessageDialog(
+                null,
+                scroll,
+                "Balanço Físico-Financeiro",
+                JOptionPane.INFORMATION_MESSAGE
+        );
     }
 }
