@@ -111,18 +111,35 @@ public class Main {
 
         do {
             String nome = JOptionPane.showInputDialog("Informe o nome do produto: ");
-            double preco = Double.parseDouble(JOptionPane.showInputDialog("Nome: " + nome + "\n\nInforme o preço: "));
-            String Uni = JOptionPane.showInputDialog("Nome: " + nome + "\nPreço: R$" + String.format("%.2f", preco) + "\n\nInforme a unidade de medida (ex: Kg,Un,Cx): ");
-            double qtde = Double.parseDouble(JOptionPane.showInputDialog("Nome: " + nome + "\nPreço: R$" + String.format("%.2f", preco) + "\nUnidade de medida: " + Uni + "\n\nInforme a quantidade: "));
-
-            String confirma = JOptionPane.showInputDialog("Confirma inclusão?\n\n"
-                    + "Nome: " + nome
+            double preco = FuncoesAuxiliares.lerDouble("Nome: " + nome + "\n\nInforme o preço:");
+                if (preco <= 0) {
+                    JOptionPane.showMessageDialog(null, "O preço deve ser maior que zero.");
+                    return;
+                }
+            String Uni = FuncoesAuxiliares.lerUnidade(
+                        "Nome: " + nome
+                        + "\nPreço: R$" + String.format("%.2f", preco)
+                        + "\n\nInforme a unidade de medida (Kg, Un, Cx, Pct ou L):"
+                );
+                if (Uni == null) {
+                    JOptionPane.showMessageDialog(null, "Inclusão cancelada.");
+                    return;
+}
+            double qtde = FuncoesAuxiliares.lerDouble(
+                    "Nome: " + nome
                     + "\nPreço: R$" + String.format("%.2f", preco)
-                    + "\nQuantidade: " + String.format("%.3f", qtde) + Uni
-                    + "\n\nS - Sim"
-                    + "\nN - Não");
+                    + "\nUnidade de medida: " + Uni
+                    + "\n\nInforme a quantidade:"
+            );
+                if (qtde < 0) {
+                    JOptionPane.showMessageDialog(null, "A quantidade deve ser maior ou igual a zero.");
+                    return;
+                    }
 
-            char confirmaCHAR = confirma.charAt(0);
+            char confirmaCHAR = FuncoesAuxiliares.lerSimNao("Confirma inclusão?\n\n"
+                + "Nome: " + nome
+                + "\nPreço: R$" + String.format("%.2f", preco)
+                + "\nQuantidade: " + String.format("%.3f", qtde) + " " + Uni);
 
             if (confirmaCHAR == 's' || confirmaCHAR == 'S') {
                 nomes[total] = nome;
@@ -136,13 +153,7 @@ public class Main {
                 JOptionPane.showMessageDialog(null, "Inclusão cancelada!");
             }
 
-            String newinclusao = JOptionPane.showInputDialog("""
-                    Deseja nova inclusão?
-                    S - Sim
-                    N - Não
-                    """);
-
-            newinclusaoCHAR = newinclusao.charAt(0);
+            newinclusaoCHAR = FuncoesAuxiliares.lerSimNao("Deseja nova inclusão?");
 
         } while (newinclusaoCHAR == 's' || newinclusaoCHAR == 'S');
     }
@@ -152,6 +163,10 @@ public class Main {
         char newalteracaoChar;
 
         do {
+            if (FuncoesAuxiliares.estoqueVazio(total)) {
+            return;            
+            }
+            
             ListaProdutosOrdenados.mostrar(nomes, total);
             String nomeBusca = JOptionPane.showInputDialog("Informe o nome do produto que deseja alterar:");
 
@@ -190,13 +205,7 @@ public class Main {
                 }
             }
 
-            String nova = JOptionPane.showInputDialog("""
-                Deseja alterar outro produto?
-                S - Sim
-                N - Não
-                """);
-
-            newalteracaoChar = nova.charAt(0);
+            newalteracaoChar = FuncoesAuxiliares.lerSimNao("Deseja alterar outro produto?");
 
         } while (newalteracaoChar == 'S' || newalteracaoChar == 's');
     }
@@ -205,7 +214,12 @@ public class Main {
     static void consultar() {
         char newconsultaChar;
 
-        do {
+        do {            
+            if (FuncoesAuxiliares.estoqueVazio(total)) {
+            return;
+            }
+
+
             ListaProdutosOrdenados.mostrar(nomes, total);
             String nomeBusca = JOptionPane.showInputDialog("Informe o nome do produto que deseja consultar: ");
             int posConsulta = FuncoesAuxiliares.buscarProduto(nomes, total, nomeBusca);
@@ -219,13 +233,8 @@ public class Main {
                         + "\nPreço: R$" + String.format("%.2f", precos[posConsulta])
                         + "\nQuantidade: " + String.format("%.3f", quantidades[posConsulta]) + unidades[posConsulta]);
             }
-            String novaconsulta = JOptionPane.showInputDialog("""
-                Deseja consultar outro produto?
-                S - Sim
-                N - Não
-                """);
-
-            newconsultaChar = novaconsulta.charAt(0);
+            
+            newconsultaChar = FuncoesAuxiliares.lerSimNao("Deseja consultar outro produto?");
 
         } while (newconsultaChar == 'S' || newconsultaChar == 's');
     }
@@ -235,6 +244,10 @@ public class Main {
         char newexclusaoChar;
 
         do {
+            if (FuncoesAuxiliares.estoqueVazio(total)) {
+            return;
+            }
+            
             ListaProdutosOrdenados.mostrar(nomes, total);
             if (FuncoesAuxiliares.estoqueVazio(total)) {
                 return;
@@ -280,20 +293,14 @@ public class Main {
                 }
             }
 
-            String novaexclusao = JOptionPane.showInputDialog("""
-                Deseja excluir outro produto?
-                S - Sim
-                N - Não
-                """);
-
-            newexclusaoChar = novaexclusao.charAt(0);
+            newexclusaoChar = FuncoesAuxiliares.lerSimNao("Deseja excluir outro produto?");
 
         } while (newexclusaoChar == 'S' || newexclusaoChar == 's');
     }
 
     // ================= MOVIMENTAÇÃO =================
     static void menuMovimentacao() {
-        char op;
+        char op = ' ';
 
         do {
             String movimentacao = JOptionPane.showInputDialog("""
@@ -307,16 +314,26 @@ public class Main {
                                     0 - RETORNAR
                                     
                                     DIGITE A OPÇÃO: """);
+            
+            if (movimentacao == null || !movimentacao.matches("[0-2]")) {
+                JOptionPane.showMessageDialog(null, "Digite uma opção válida.");
+                continue;
+            }
 
             op = movimentacao.charAt(0);
 
             switch (op) {
+                case '0':                    
+                break;
                 case '1':
                     entrada();
                     break;
                 case '2':
                     saida();
                     break;
+                default:
+                   JOptionPane.showMessageDialog(null, "Digite uma opção válida.");
+                   break;
             }
 
         } while (op != '0');
@@ -326,11 +343,12 @@ public class Main {
     static void entrada() {
         char novaEntradaChar;
 
-        do {
-            ListaProdutosOrdenados.mostrar(nomes, total);
+        do {            
             if (FuncoesAuxiliares.estoqueVazio(total)) {
-                return;
+            return;
             }
+
+            ListaProdutosOrdenados.mostrar(nomes, total);
 
             String nomeBusca = JOptionPane.showInputDialog("Informe o nome do produto:");
 
@@ -344,8 +362,8 @@ public class Main {
                         "PRODUTO: " + nomes[pos]
                         + "\nQTDE ATUAL: " + quantidades[pos] + unidades[pos]);
 
-                int entrada = Integer.parseInt(
-                        JOptionPane.showInputDialog("Informe a quantidade de entrada: ")
+                double entrada = FuncoesAuxiliares.lerDouble(
+                    "Informe a quantidade de entrada:"
                 );
 
                 if (entrada <= 0) {
@@ -357,13 +375,8 @@ public class Main {
                     JOptionPane.showMessageDialog(null,
                             "QTDE FINAL: " + qtdeFinal + unidades[pos]);
 
-                    String confirma = JOptionPane.showInputDialog("""
-                        Confirma entrada?
-                        S - Sim
-                        N - Não
-                        """);
-
-                    char confirmaChar = confirma.charAt(0);
+                    char confirmaChar = FuncoesAuxiliares.lerSimNao("Confirma entrada?");
+                    
 
                     if (confirmaChar == 'S' || confirmaChar == 's') {
                         quantidades[pos] = qtdeFinal;
@@ -375,13 +388,7 @@ public class Main {
                 }
             }
 
-            String novaEntrada = JOptionPane.showInputDialog("""
-                Deseja realizar nova entrada?
-                S - Sim
-                N - Não
-                """);
-
-            novaEntradaChar = novaEntrada.charAt(0);
+            novaEntradaChar = FuncoesAuxiliares.lerSimNao("Deseja realizar nova entrada?");
 
         } while (novaEntradaChar == 'S' || novaEntradaChar == 's');
     }
@@ -391,10 +398,11 @@ public class Main {
         char novaSaidaChar;
 
         do {
-            ListaProdutosOrdenados.mostrar(nomes, total);
             if (FuncoesAuxiliares.estoqueVazio(total)) {
-                return;
+            return;
             }
+
+            ListaProdutosOrdenados.mostrar(nomes, total);
 
             String nomeBusca = JOptionPane.showInputDialog("Informe o nome do produto:");
             int pos = FuncoesAuxiliares.buscarProduto(nomes, total, nomeBusca);
@@ -407,8 +415,8 @@ public class Main {
                         "PRODUTO: " + nomes[pos]
                         + "\nQTDE ATUAL: " + quantidades[pos] + unidades[pos]);
 
-                int saida = Integer.parseInt(
-                        JOptionPane.showInputDialog("Informe a quantidade de saída:")
+                double saida = FuncoesAuxiliares.lerDouble(
+                    "Informe a quantidade de saída:"
                 );
 
                 if (saida <= 0) {
@@ -422,13 +430,7 @@ public class Main {
                     JOptionPane.showMessageDialog(null,
                             "QTDE FINAL: " + qtdeFinal + unidades[pos]);
 
-                    String confirma = JOptionPane.showInputDialog("""
-                        Confirma saída?
-                        S - Sim
-                        N - Não
-                        """);
-
-                    char confirmaChar = confirma.charAt(0);
+                    char confirmaChar = FuncoesAuxiliares.lerSimNao("Confirma saída?");
 
                     if (confirmaChar == 'S' || confirmaChar == 's') {
                         quantidades[pos] = qtdeFinal;
@@ -440,13 +442,7 @@ public class Main {
                 }
             }
 
-            String novaSaida = JOptionPane.showInputDialog("""
-                Deseja realizar nova saída?
-                S - Sim
-                N - Não
-                """);
-
-            novaSaidaChar = novaSaida.charAt(0);
+            novaSaidaChar = FuncoesAuxiliares.lerSimNao("Deseja realizar nova saída?");
 
         } while (novaSaidaChar == 'S' || novaSaidaChar == 's');
     }
@@ -546,13 +542,7 @@ public class Main {
                 JOptionPane.showMessageDialog(null, "Opção inválida!");
             }
 
-            String novoReajuste = JOptionPane.showInputDialog("""
-                NOVO REAJUSTE?
-                S - SIM
-                N - NÃO
-                """);
-
-            novoReajusteChar = novoReajuste.charAt(0);
+            novoReajusteChar = FuncoesAuxiliares.lerSimNao("Novo reajuste?");
 
         } while (novoReajusteChar == 'S' || novoReajusteChar == 's');
     }
